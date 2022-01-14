@@ -1,0 +1,45 @@
+<deadlock-list>
+	<deadlock victim="process25535686108">
+		<process-list>
+			<process id="process25535686108" taskpriority="0" logused="548" waitresource="KEY: 8:72057594043891712 (7b411d6f9af4)" waittime="8863" ownerId="1560979" transactionname="user_transaction" lasttranstarted="2018-11-28T18:50:33.127" XDES="0x25786304490" lockMode="U" schedulerid="1" kpid="4372" status="suspended" spid="91" sbid="0" ecid="0" priority="0" trancount="2" lastbatchstarted="2018-11-28T18:50:42.663" lastbatchcompleted="2018-11-28T18:50:42.660" lastattention="1900-01-01T00:00:00.660" clientapp="Microsoft SQL Server Management Studio - Abfrage" hostname="BOOM" hostpid="1620" loginname="BOOM\Boss" isolationlevel="read committed (2)" xactid="1560979" currentdb="8" currentdbname="Northwind" lockTimeout="4294967295" clientoption1="671090784" clientoption2="390200">
+				<executionStack>
+					<frame procname="adhoc" line="1" stmtend="130" sqlhandle="0x0200000017a4461bf7e2d8b59e6832d15316c9b5b1ab61090000000000000000000000000000000000000000">
+unknown     </frame>
+					<frame procname="adhoc" line="1" stmtend="130" sqlhandle="0x020000007c5230059153a60fc1db76e9dac888beae8e172a0000000000000000000000000000000000000000">
+unknown     </frame>
+				</executionStack>
+				<inputbuf>
+update orders set freight = freight*1.2 where customerid = 'ALFKI'
+    </inputbuf>
+			</process>
+			<process id="process25535691c28" taskpriority="0" logused="864" waitresource="KEY: 8:72057594043301888 (a02b313b17c5)" waittime="4459" ownerId="1561175" transactionname="user_transaction" lasttranstarted="2018-11-28T18:50:37.790" XDES="0x25780684490" lockMode="U" schedulerid="7" kpid="6988" status="suspended" spid="93" sbid="0" ecid="0" priority="0" trancount="2" lastbatchstarted="2018-11-28T18:50:47.070" lastbatchcompleted="2018-11-28T18:50:47.067" lastattention="1900-01-01T00:00:00.067" clientapp="Microsoft SQL Server Management Studio - Abfrage" hostname="BOOM" hostpid="1620" loginname="BOOM\Boss" isolationlevel="read committed (2)" xactid="1561175" currentdb="8" currentdbname="Northwind" lockTimeout="4294967295" clientoption1="671090784" clientoption2="390200">
+				<executionStack>
+					<frame procname="adhoc" line="1" stmtstart="70" stmtend="182" sqlhandle="0x020000005d30f10ccd17185b3d0bffa31e77952774d5615d0000000000000000000000000000000000000000">
+unknown     </frame>
+					<frame procname="adhoc" line="1" stmtend="122" sqlhandle="0x020000004129ee170581fb423dbbd2200ac3238521978acd0000000000000000000000000000000000000000">
+unknown     </frame>
+				</executionStack>
+				<inputbuf>
+update customers set city = 'PARIS' where customerid = 'ALFKI'    </inputbuf>
+			</process>
+		</process-list>
+		<resource-list>
+			<keylock hobtid="72057594043891712" dbid="8" objectname="Northwind.dbo.Orders" indexname="PK_Orders" id="lock2577211ae80" mode="X" associatedObjectId="72057594043891712">
+				<owner-list>
+					<owner id="process25535691c28" mode="X"/>
+				</owner-list>
+				<waiter-list>
+					<waiter id="process25535686108" mode="U" requestType="wait"/>
+				</waiter-list>
+			</keylock>
+			<keylock hobtid="72057594043301888" dbid="8" objectname="Northwind.dbo.Customers" indexname="PK_Customers" id="lock256bae45380" mode="X" associatedObjectId="72057594043301888">
+				<owner-list>
+					<owner id="process25535686108" mode="X"/>
+				</owner-list>
+				<waiter-list>
+					<waiter id="process25535691c28" mode="U" requestType="wait"/>
+				</waiter-list>
+			</keylock>
+		</resource-list>
+	</deadlock>
+</deadlock-list>
